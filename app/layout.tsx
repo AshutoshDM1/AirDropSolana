@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import Provider from "./provider";
+import AppWalletProvider from "./provider";
 
 export const metadata: Metadata = {
   title: "AirDrop Solana",
@@ -15,14 +17,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body  className="text-black bg-white dark:text-white dark:bg-[#121212] " >
+      <body className="text-black bg-white dark:text-white dark:bg-[#121212] ">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <AppWalletProvider>{children}</AppWalletProvider>
         </ThemeProvider>
       </body>
     </html>
