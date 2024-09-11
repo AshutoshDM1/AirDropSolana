@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import Provider from "./provider";
 import AppWalletProvider from "./provider";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "AirDrop Solana",
@@ -24,6 +25,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster/>
           <AppWalletProvider>{children}</AppWalletProvider>
         </ThemeProvider>
       </body>

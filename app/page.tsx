@@ -1,15 +1,11 @@
 "use client";
+import Dashboard from "@/components/Dashboard";
 import { ModeToggle } from "@/components/ui/Toogle";
 import { useWallet } from "@solana/wallet-adapter-react";
-import {
-  WalletDisconnectButton,
-  WalletMultiButton,
-} from "@solana/wallet-adapter-react-ui";
-import '@solana/wallet-adapter-react-ui/styles.css'
 
 export default function Home() {
   const wallet = useWallet();
-  console.log(wallet.publicKey?.toString())
+  console.log(wallet.publicKey?.toString());
   return (
     <>
       <div className="h-screen max-w-7xl mx-auto px-10 ">
@@ -19,9 +15,7 @@ export default function Home() {
           </h1>
           <ModeToggle />
         </div>
-        <div className="flex justify-center items-center h-[10vh] gap-5 ">
-        <WalletMultiButton />
-        <WalletDisconnectButton /></div>
+        <Dashboard />
       </div>
     </>
   );

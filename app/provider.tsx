@@ -1,18 +1,30 @@
 "use client";
-import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
-import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
+import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 
- 
+const WalletConnectionProvider = dynamic(
+  () => import('@/components/WalletConnectionProvider'),
+  { ssr: false }
+);
+
 export default function AppWalletProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <ConnectionProvider endpoint={"https://api.devnet.solana.com"}>
-      <WalletProvider wallets={[]} autoConnect>
-        <WalletModalProvider>{children}</WalletModalProvider>
-      </WalletProvider>
-    </ConnectionProvider>
+    <>
+      {mounted && (
+        <WalletConnectionProvider>
+          {children}
+        </WalletConnectionProvider>
+      )}
+    </>
   );
 }
